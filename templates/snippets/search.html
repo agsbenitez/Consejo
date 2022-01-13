@@ -1,0 +1,9 @@
+<!--este snippets es solo para generar el campo de búsqueda-->
+<form action="{% url 'ordenanzas:search' %}">
+    <div class="input-group">
+        <input type="text" value="{{query}} "name="q" class="form-control" placeholder="Buscar">
+        <div class="input-group-append">
+            <input type="submit" class="waves-effect waves-light btn-small" value="Buscar">
+        </div>
+    </div>
+</form>

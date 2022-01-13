@@ -1,0 +1,28 @@
+#myTable tr td:nth-child(4), #myTable th:nth-child(4) {
+    display: none;
+}
+#myTable tr td:nth-child(5), #myTable th:nth-child(5) {
+    display: none;
+}
+#myTable tr td:nth-child(6), #myTable th:nth-child(6) {
+    display: none;
+}
+
+#myTable tr td:nth-child(7), #myTable th:nth-child(7) {
+    display: none;
+}
+
+.card-title{
+    font-size: 30px;
+}
+.sub-title-card{
+    font-size: 22px;
+    font-weight: 200;
+    display: block;
+    line-height: 32px;
+    margin-bottom: 4px;
+}
+
+#myTable{
+    margin-top: 5px;
+}

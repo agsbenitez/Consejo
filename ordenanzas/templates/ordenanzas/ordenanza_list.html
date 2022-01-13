@@ -1,0 +1,109 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+{% block content %}
+<h1 class="center">Ordenanzas</h1>
+
+{% include "snippets/search.html" %}
+
+<table id="myTable" class="highlight centered striped"> 
+    <thead class="green lighten-1">
+      <tr >
+        <th>Ordenanza</th>
+        <th>Categoria</th> 
+        <th>Fecha de Promulgacion</th>
+        <th>Reseña</th>
+        <th>Tags</th>
+        <th>Presentado</th>
+        <th>File</th>
+      </tr>
+    </thead>
+    <tbody>            
+        {% for ordenanza in ordenazas %}
+            <tr>
+                <td><a id="seeOrdenanza" class="td-name" href="#">  {{ ordenanza }}</a></td>
+                <td class="td-categoria">{{ ordenanza.cat.descripcion}}</td> 
+                <td class="td-promulgacion">{{ ordenanza.fecha_promulgacion}}</td> 
+                <td class="td-resena">{{ ordenanza.reseña }}</td>
+                <td class="td-tags">
+                  {% for tag in ordenanza.tags.all %}
+                    {{ tag }}, 
+                  {% endfor %}
+                </td>
+                <td class="td-consejal">{{ ordenanza.concejal }}</td>
+                <td class="td-file">{{ ordenanza.pdfFile }}</td>
+            </tr>
+        {% empty %}
+            <tr>
+                <li>No Se encontraron coincidencias.</li>
+            </tr
+        {% endfor %}
+    </tbody>
+    
+    
+  </table>
+  {{ is_paginated }}
+
+  {% if is_paginated %}
+  <div>
+    
+    <ul class="pagination center">
+      {% if page_obj.has_previous %}
+        <li class="waves-effect"><a href="?page={{ page_obj.previous_page_number }}"><i class="material-icons"> << </i></a></li>
+      {% else %}
+        <li class="disabled"><a href="#"><i class="material-icons"> << </i></a></li>
+      {% endif %}
+
+      {% for i in paginator.page_range %}
+        <li class="{% if page_obj.number == i %} active {% endif %}"><a href="?page={{ i }}">{{i}}</a></li>
+      {% endfor %}
+      
+      {% if page_obj.has_next %}
+        <li class="waves-effect"><a href="?page={{ page_obj.next_page_number }}"><i class="material-icons"> >> </i></a></li>
+        {% else %}
+        <li class="disabled"><a href="#"><i class="material-icons"> >> </i></a></li>
+      {% endif %}
+
+      
+    </ul>
+          
+  </div>
+  {% endif %}
+
+  
+
+
+  <!-- Modal Structure -->
+  <div id="modal1" class="modal s8 m4">
+    <div class="modal-content ">
+
+      <div class="row">
+        <div class="col s12">
+          <div class="card medium blue-grey darken-1">
+            <div class="card-content white-text">
+              <span id="nombre" class="card-title"></span>
+              <span id="categoria" class="sub-title-card"></span>
+              <span id="promulgacion" class="sub-title-card"></span>
+              
+              <p id="resena"></p>
+            </div>
+            <div class="card-action">
+              <a href="{%url 'ordenanzas:PDF' %}" target="_blank">Ordenanza</a>  
+            </div>
+          </div>
+        </div>
+      </div>
+    <div class="modal-footer">
+      <a href="#!" class="modal-close waves-effect waves-green btn-flat">Cerrar</a>
+    </div>
+  </div>
+{% endblock content %}
+    
+{% block javascript %}
+  
+  <script src="{% static '/js/mijs.js' %} "></script>
+
+
+{% endblock %}
+
