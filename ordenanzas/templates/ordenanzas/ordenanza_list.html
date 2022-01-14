@@ -5,7 +5,7 @@
 {% block content %}
 <h1 class="center">Ordenanzas</h1>
 
-{% include "snippets/search.html" %}
+{% include "ordenanzas/snippets/search.html" %}
 
 <table id="myTable" class="highlight centered striped"> 
     <thead class="green lighten-1">
@@ -43,7 +43,7 @@
     
     
   </table>
-  {{ is_paginated }}
+
 
   {% if is_paginated %}
   <div>
