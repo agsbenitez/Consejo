@@ -15,7 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
-from .views import saludo, hoy, saludar_a, cuando_naci
+#from .views import saludo, hoy, saludar_a, cuando_naci
 from ordenanzas.views import ListOrdenanza
 
 
@@ -23,7 +23,4 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('ordenanzas/', include('ordenanzas.urls')),
     path('', ListOrdenanza.as_view(), name="inicio"), # cod de ejemplos se deben borarr para el proyecto
-    path('hoy/', hoy), # cod de ejemplos se deben borarr para el proyecto
-    path("minombre/<nombre>", saludar_a), # cod de ejemplos se deben borarr para el proyecto
-    path("edad/<edad>", cuando_naci)
 ]
